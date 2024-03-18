@@ -1,20 +1,29 @@
 package com.ashstudios.safana.ui.worker_details;
-
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import androidx.lifecycle.ViewModel;
 
+import com.ashstudios.safana.adapters.WorkerRVAdapter;
 import com.ashstudios.safana.models.WorkerModel;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class WorkerDetailsViewModel extends ViewModel {
 
     private ArrayList<WorkerModel> workerModels;
+    FirebaseFirestore db;
+    WorkerModel workerModel;
 
     public WorkerDetailsViewModel() {
         workerModels = new ArrayList<>();
-        initData();
     }
 
 //    "https://i.imgur.com/[0-9a-zA-Z]*.(jpg|png)
