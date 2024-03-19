@@ -9,6 +9,14 @@
             android:icon="@drawable/ic_tasks"
             android:title="@string/my_tasks" />
         <item
+            android:id="@+id/nav_scaner_qr"
+            android:icon="@drawable/ic_power_button"
+            android:title="@string/scaner_qr_code" />
+        <item
+            android:id="@+id/nav_calendar_attendance"
+            android:icon="@drawable/ic_arrow"
+            android:title="Calendar Attendance"/>
+        <item
             android:id="@+id/nav_calendar"
             android:icon="@drawable/ic_calendar"
             android:title="@string/calendar" />

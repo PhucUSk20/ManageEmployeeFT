@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -23,18 +24,30 @@ public class WorkerDetailsFragment extends Fragment {
 
     static private WorkerDetailsViewModel workerDetailsViewModel;
     static private RecyclerView recyclerView;
+    ProgressBar progressBar;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         workerDetailsViewModel = ViewModelProviders.of(this).get(WorkerDetailsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_worker_details, container, false);
         FloatingActionButton fab = root.findViewById(R.id.fab);
+        progressBar = root.findViewById(R.id.progressbar);
 
         recyclerView = root.findViewById(R.id.rc_worker_details);
+
+        progressBar.setVisibility(View.VISIBLE);
+        recyclerView.setVisibility(View.GONE);
         WorkerRVAdapter workerRVAdapter = new WorkerRVAdapter(workerDetailsViewModel,getContext());
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setAdapter(workerRVAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        workerDetailsViewModel.setDataChangedListener(() -> {
+            getActivity().runOnUiThread(() -> {
+                workerRVAdapter.notifyDataSetChanged();
+                progressBar.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+            });
+        });
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -1,4 +1,4 @@
-package com.example.attendace;
+package com.ashstudios.safana.ui.generate_qr;
 
 import android.Manifest;
 import android.content.DialogInterface;
@@ -9,7 +9,9 @@ import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.InputType;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,38 +21,45 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
+import com.ashstudios.safana.R;
 import com.google.zxing.BarcodeFormat;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import java.io.FileOutputStream;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-public class GenerateQR extends AppCompatActivity {
+public class GenerateQR extends Fragment {
     private ImageView qrCodeImageView;
     private Button generateButton, print;
     private EditText linkEditText;
     private Bitmap qrCodeBitmap;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_generate_qr);
-
-        qrCodeImageView = findViewById(R.id.qrCodeImageView);
-        generateButton = findViewById(R.id.generateButton);
-        linkEditText = findViewById(R.id.linkEditText);
-        print = findViewById(R.id.Print);
-
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_generate_qr, container, false);
+        qrCodeImageView = view.findViewById(R.id.qrCodeImageView);
+        generateButton = view.findViewById(R.id.generateButton);
+        linkEditText = view.findViewById(R.id.linkEditText);
+        print = view.findViewById(R.id.Print);
+        LocalDate now = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        String dateString = now.format(formatter);
         generateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String link = linkEditText.getText().toString();
 
-                if (!link.startsWith("http://") && !link.startsWith("https://")) {
-                    link = "http://" + link;
-                }
+             //   if (!link.startsWith("http://") && !link.startsWith("https://")) {
+             //       link = "http://" + link;
+             //   }
+             //
 
-                String encryptedLink = encryptLink(link);
+                String fullLink =  "http://"+ dateString;
+                String encryptedLink = encryptLink(fullLink);
 
                 BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
                 try {
@@ -68,15 +77,16 @@ public class GenerateQR extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (qrCodeBitmap != null) {
-                    if (ContextCompat.checkSelfPermission(GenerateQR.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
                             != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(GenerateQR.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 123);
+                        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 123);
                     } else {
                         generateQRCodePDF();
                     }
                 }
             }
         });
+        return view;
     }
 
     private String encryptLink(String link) {
@@ -92,10 +102,10 @@ public class GenerateQR extends AppCompatActivity {
     }
 
     private void generateQRCodePDF() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Enter PDF Document Name");
 
-        final EditText input = new EditText(this);
+        final EditText input = new EditText(getActivity());
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(input);
 
@@ -106,7 +116,7 @@ public class GenerateQR extends AppCompatActivity {
                 if (!documentName.isEmpty()) {
                     createAndPrintPDF(documentName);
                 } else {
-                    Toast.makeText(GenerateQR.this, "Document name cannot be empty.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Document name cannot be empty.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -159,7 +169,7 @@ public class GenerateQR extends AppCompatActivity {
             pdfDocument.close();
 
             // Notify the user that the PDF has been generated and offer to print it
-            Toast.makeText(GenerateQR.this, "PDF Saved successfully", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "PDF Saved successfully", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
         }

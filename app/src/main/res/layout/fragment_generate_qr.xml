@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/screen"
     android:padding="16dp"
-    tools:context=".GenerateQR">
+    tools:context=".ui.generate_qr.GenerateQR">
 
     <ImageView
         android:id="@+id/qrCodeImageView"
@@ -23,7 +23,6 @@
         android:layout_width="248dp"
         android:layout_height="60dp"
         android:layout_marginBottom="116dp"
-        android:fontFamily="@font/alata"
         android:text="G e n e r a t e"
         android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -41,7 +40,6 @@
         android:id="@+id/qrcodetxt"
         android:layout_width="235dp"
         android:layout_height="60dp"
-        android:fontFamily="@font/alata"
         android:text="Q R C o d e"
         android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -71,7 +69,6 @@
         android:layout_width="161dp"
         android:layout_height="63dp"
         android:layout_marginTop="104dp"
-        android:fontFamily="@font/alata"
         android:text="Generate QR Code"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -89,7 +86,6 @@
         android:layout_width="161dp"
         android:layout_height="63dp"
         android:layout_marginTop="104dp"
-        android:fontFamily="@font/alata"
         android:text="Print The QR"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"

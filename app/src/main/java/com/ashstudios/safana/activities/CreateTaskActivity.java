@@ -28,7 +28,7 @@ public class CreateTaskActivity extends AppCompatActivity {
         });
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Safana");
+        toolbar.setTitle("Create Tasks");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

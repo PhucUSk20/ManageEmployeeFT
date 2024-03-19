@@ -1,37 +1,43 @@
-package com.ashstudios.safana.activities;
+package com.ashstudios.safana.ui.attendance_database;
 
-import android.content.Intent;
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.ashstudios.safana.R;
 
-public class WebviewActivity extends AppCompatActivity {
+public class WebviewFragment extends Fragment {
 
     private WebView webView;
     private static final String PREF_IS_SIGNED_IN = "is_signed_in";
+    private String url;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_webview);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_webview, container, false);
 
-        webView = findViewById(R.id.webView);
+        webView = view.findViewById(R.id.webView2);
         configureWebView();
 
-        String url = getIntent().getStringExtra("url");
+        String url = "https://console.firebase.google.com/project/managee-7344f/database/managee-7344f-default-rtdb/data";
 
         if (requiresGoogleSignIn(url) && !isSignedIn()) {
             signInWithGoogle();
-            return;
+            return view;
         }
 
         loadUrl(url);
+        return view;
     }
 
     // Check if the URL requires Google Sign-In
@@ -41,7 +47,7 @@ public class WebviewActivity extends AppCompatActivity {
 
     // Check if the user is signed in
     private boolean isSignedIn() {
-        SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences preferences = getActivity().getSharedPreferences("MyPrefs", MODE_PRIVATE);
         return preferences.getBoolean(PREF_IS_SIGNED_IN, false);
     }
 
@@ -61,14 +67,4 @@ public class WebviewActivity extends AppCompatActivity {
         // After a successful sign-in, you can load the WebView with the desired URL.
     }
 
-    @Override
-    public void onBackPressed() {
-        if (webView.canGoBack()) {
-            webView.goBack();
-        } else {
-            // If the WebView cannot go back, start the Internal.class
-          //  startActivity(new Intent(this, Internal.class));
-            finish(); // Finish the Webview activity to prevent it from being retained in the back stack
-        }
-    }
 }

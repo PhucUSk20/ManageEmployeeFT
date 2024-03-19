@@ -39,7 +39,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:background="@drawable/custom_edit_text"
-                    android:drawableEnd="@drawable/ic_arrow"
+                    android:drawableEnd="@drawable/ic_arrow2"
                     android:ems="10"
                     android:hint="@string/enter_your_id"
                     android:inputType="textCapCharacters"
@@ -52,7 +52,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:background="@drawable/custom_edit_text"
-                    android:drawableEnd="@drawable/ic_arrow"
+                    android:drawableEnd="@drawable/ic_arrow2"
                     android:ems="10"
                     android:visibility="visible"
                     android:translationX="400dp"
@@ -65,14 +65,14 @@
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="426dp"
+                android:layout_height="583dp"
                 android:scaleType="centerCrop"
                 android:translationY="-25dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_background" />
+                app:srcCompat="@drawable/screen1" />
 
             <TextView
                 android:id="@+id/textView2"

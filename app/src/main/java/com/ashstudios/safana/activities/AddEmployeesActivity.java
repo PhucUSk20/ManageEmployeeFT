@@ -93,7 +93,7 @@ public class AddEmployeesActivity extends AppCompatActivity {
         });
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Safana");
+        toolbar.setTitle("Create new ids");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);

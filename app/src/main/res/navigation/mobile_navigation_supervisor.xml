@@ -44,5 +44,16 @@
     <fragment
         android:id="@+id/nav_worker_laws"
         android:name="com.ashstudios.safana.ui.laws.WorkerLawsFragment"
+        android:label="Laws"
         tools:layout="@layout/fragment_worker_laws" />
+    <fragment
+        android:id="@+id/nav_generate_qr"
+        android:name="com.ashstudios.safana.ui.generate_qr.GenerateQR"
+        android:label="Attendance by QR Code"
+        tools:layout="@layout/fragment_generate_qr"/>
+    <fragment
+        android:id="@+id/nav_attendance_database"
+        android:name="com.ashstudios.safana.ui.attendance_database.WebviewFragment"
+        android:label="Attendance Database"
+        tools:layout="@layout/fragment_webview"/>
 </navigation>

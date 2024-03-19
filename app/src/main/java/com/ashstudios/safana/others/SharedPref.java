@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.ashstudios.safana.ui.allowances.AllowancesFragment;
+
 public class SharedPref {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -32,6 +34,7 @@ public class SharedPref {
         sharedPreferences = context.getSharedPreferences(PREF_NAME,Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
     }
+
 
     public boolean getIS_LOGGED_IN() {
         return sharedPreferences.getBoolean(IS_LOGGED_IN,false);

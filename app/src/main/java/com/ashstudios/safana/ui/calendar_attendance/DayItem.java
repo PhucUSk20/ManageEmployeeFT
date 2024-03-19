@@ -1,4 +1,4 @@
-package com.example.firstcalendar;
+package com.ashstudios.safana.ui.calendar_attendance;
 
 public class DayItem {
     private final int day;

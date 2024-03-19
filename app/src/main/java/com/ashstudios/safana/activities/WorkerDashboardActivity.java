@@ -80,7 +80,8 @@ public class WorkerDashboardActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_tasks, R.id.nav_calendar, R.id.nav_search,
-                R.id.nav_leave, R.id.nav_allowance, R.id.nav_project_status)
+                R.id.nav_leave, R.id.nav_allowance, R.id.nav_project_status,
+                R.id.nav_scaner_qr, R.id.nav_calendar_attendance)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

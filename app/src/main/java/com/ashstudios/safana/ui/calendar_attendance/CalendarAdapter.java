@@ -1,13 +1,16 @@
-package com.example.firstcalendar;
+package com.ashstudios.safana.ui.calendar_attendance;
 
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.ashstudios.safana.R;
 
 import java.util.ArrayList;
 
@@ -46,7 +49,8 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
         int green = ContextCompat.getColor(holder.calendarCellLL.getContext(), R.color.green);
         int mediumDarkGreen = ContextCompat.getColor(holder.calendarCellLL.getContext(), R.color.medium_dark_green);
         int darkGreen = ContextCompat.getColor(holder.calendarCellLL.getContext(), R.color.dark_green);
-
+        DayItem dayItem = daysOfMonth.get(holder.getAdapterPosition());
+        holder.dayOfMonth.setText(String.valueOf(dayItem.getDay()));
         for (int i = 0; i < greenDays.size(); i++)
         {
             if (daysOfMonth.get(position).getDay() == greenDays.get(i).getDay() && daysOfMonth.get(position).getMonth() == greenDays.get(i).getMonth())
@@ -65,7 +69,27 @@ class CalendarAdapter extends RecyclerView.Adapter<CalendarViewHolder>
 //                holder.parentLayout.setBackgroundColor(Color.GREEN);
             }
         }
+        holder.itemView.setOnClickListener(v -> {
+            if (onItemListener != null) {
+                String dayText = String.valueOf(dayItem.getDay()); // Convert day to string
+                // Sử dụng thông tin từ dayItem
+                int day = dayItem.getDay();
+                int month = dayItem.getMonth();
+                if (month == 13 ) {
+                    month = 1;
+                }
+                if (month == 14){
+                    month= 2;
+                }
+                int year = dayItem.getYear();
+                if (year == 2023){
+                    year = 2024;
+                }
+               String chuoi ="Selected Date "+day+" "+month+" "+year;
 
+                onItemListener.onItemClick(position, chuoi); // Pass day as a string
+            }
+        });
     }
 
     @Override

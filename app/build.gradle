@@ -5,7 +5,7 @@ android {
     buildToolsVersion "29.0.1"
     defaultConfig {
         applicationId "com.ashstudios.safana"
-        minSdkVersion 21
+        minSdkVersion 26
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -16,6 +16,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -37,8 +41,13 @@ dependencies {
     implementation 'com.github.applikeysolutions:cosmocalendar:1.0.4'
     implementation 'com.github.lecho:hellocharts-library:1.5.8@aar'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'com.google.firebase:firebase-database:20.0.4'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation("com.google.zxing:core:3.4.1")
+    implementation("com.journeyapps:zxing-android-embedded:4.2.0")
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
 }
 apply plugin: 'com.google.gms.google-services'

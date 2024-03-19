@@ -1,5 +1,4 @@
-package com.example.firstcalendar;
-
+package com.ashstudios.safana.ui.calendar_attendance;
 
 import android.view.View;
 import android.widget.LinearLayout;
@@ -7,6 +6,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.ashstudios.safana.R;
 
 public class CalendarViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
 {

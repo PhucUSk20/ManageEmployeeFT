@@ -1,4 +1,4 @@
-package com.example.attendace;
+package com.ashstudios.safana.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,7 +9,9 @@ import android.webkit.WebViewClient;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Webview extends AppCompatActivity {
+import com.ashstudios.safana.R;
+
+public class WebviewActivity extends AppCompatActivity {
 
     private WebView webView;
     private static final String PREF_IS_SIGNED_IN = "is_signed_in";
@@ -65,7 +67,7 @@ public class Webview extends AppCompatActivity {
             webView.goBack();
         } else {
             // If the WebView cannot go back, start the Internal.class
-            startActivity(new Intent(this, Internal.class));
+          //  startActivity(new Intent(this, Internal.class));
             finish(); // Finish the Webview activity to prevent it from being retained in the back stack
         }
     }

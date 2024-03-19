@@ -44,18 +44,19 @@ public class WorkerRVAdapter extends RecyclerView.Adapter<WorkerRVAdapter.ViewHo
         WorkerModel workerModel = workerModels.get(position);
         holder.name.setText(workerModel.getName());
         holder.role.setText(workerModel.getRole());
-        if( position % 2 == 0)
+
             Picasso.get()
                 .load(workerModel.getImgUrl())
                 .noFade()
                 .resizeDimen(R.dimen.profile_photo,R.dimen.profile_photo)
                 .into(holder.circleImageView);
-        else
-            holder.circleImageView.setImageDrawable(holder.textDrawable);
+
         holder.ll_worker_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(mContext, WorkerProfileActivity.class);
+                // Assuming WorkerModel has a method getId() to get the employee's unique ID
+                intent.putExtra("EMPLOYEE_ID", workerModel.getEmp_id());
                 mContext.startActivity(intent);
 
             }

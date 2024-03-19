@@ -60,10 +60,11 @@ public class SupervisorDashboard extends AppCompatActivity {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
+        // menu should be considered as top level destinations.a
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_worker, R.id.nav_project_details,R.id.nav_calendar, R.id.nav_allowance_management,
-                R.id.nav_sup_tasks, R.id.nav_leave_management, R.id.nav_worker_laws)
+                R.id.nav_sup_tasks, R.id.nav_leave_management, R.id.nav_worker_laws, R.id.nav_generate_qr,
+                R.id.nav_attendance_database)
                 .setDrawerLayout(drawer)
                 .build();
         final NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
